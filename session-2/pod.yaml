@@ -1,0 +1,18 @@
+apiVersion: v1                # Kubernetes API version used in this YAML decriptor
+kind: Pod                     # Type of Kubernetes object/resource
+metadata:                     # Pod metadata (name, labels, annotations and so on)
+  name: web-pod               # Pod Name
+  labels:
+    tier: frontend
+    env: development 
+  annotations:
+    description: "This pod is to test Declarative method labels and annotations"
+spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on)
+  containers:
+  - image: nginx              # Container Image
+    name: nginx-container     # Container Name
+    ports:            
+    - containerPort: 80       # The Port the container is listening on
+      protocol: TCP
+
+# akms is expected - apiversion, kind , metadata, spec
