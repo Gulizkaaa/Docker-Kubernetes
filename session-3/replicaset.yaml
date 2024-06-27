@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+    - key: tier
+      operator: Exists
+    - key: environment
+      operator: Exists
+    - key: release
+      operator: Exists
+  template:
+    metadata:
+      labels:
+        tier: frontend
+        environment: development
+        release: stable  # stable, deploying, testing, stable
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
